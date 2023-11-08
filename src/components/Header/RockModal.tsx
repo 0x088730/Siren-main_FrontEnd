@@ -43,7 +43,7 @@ const RockModal = ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '450px',
-    height: '500px',
+    height: '580px',
     background: "url(/assets/images/set.png)",
     backgroundSize: '100% 100%',    
     bgcolor: 'transparent',
@@ -81,7 +81,7 @@ const RockModal = ({
                 className='well-back'
                 style={{
                   width: '300px',
-                  height: '280px',
+                  height: '300px',
                   background: "url(/assets/images/well.png)",
                   backgroundSize: 'cover',
                   margin: 'auto',
@@ -106,7 +106,6 @@ const RockModal = ({
                     textAlign: 'center',
                   }}
                 >
-                  PRICE: 20 SIREN<br></br>
                   AMOUNT: 30<br></br>
                   TIME: 3 HOURS<br></br>
                 </h2>
@@ -115,12 +114,13 @@ const RockModal = ({
                   // color="primary"
                   style={{
                     background: "url(/assets/images/big-button.png)",
-                    backgroundSize: '130px',
+                    backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',   
                     fontFamily: 'Anime Ace',  
                     color: 'white',
                     border: 'none',    
-                    width: '130px'             
+                    width: '200px',
+                    height: '42px'     
                   }}
                   onClick={(/* e */) => {
                     if (item === 0)
@@ -130,9 +130,19 @@ const RockModal = ({
                     }
                   }}
                 >
-                  {item === 0 ? 'Buy' : timer === 0 ? 'CLAIM' : `${showHourMinutes(timer)}`}
+                  {item === 0 ? 'START' : timer === 0 ? 'CLAIM' : `${showHourMinutes(timer)}`}
                 </Button>
-                
+                <h2 className="font-bold text-2xl mb-4 text-white upgrade-label"
+                  style={{
+                    fontFamily: 'Anime Ace',
+                    fontSize: '20px',
+                    marginTop: '15px',
+                    marginBottom: '0px',
+                    textAlign: 'center',
+                  }}
+                >
+                  PRICE: 20 SIREN<br></br>
+                </h2>                
               </Box>
             </Grid>
           </Grid>

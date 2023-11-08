@@ -55,6 +55,7 @@ export interface UserProfile {
     | []
   currentCharacterName: string | ''
   hunterLevel:number
+  attacking: boolean
 }
 
 export let global: UserProfile = {
@@ -81,7 +82,7 @@ export let global: UserProfile = {
   ],
   hp: 1500,
   damage: 150,
-  critical: 10,
+  critical: 80,
   rooms: [
     {
       chapter: 1,
@@ -100,11 +101,12 @@ export let global: UserProfile = {
   chapter: 1,
   section: 1,
   wall: 0,
-  energy: 0,
+  energy: 1000,
   resource: 0,
   characters: [],
   currentCharacterName: '',
-  hunterLevel:0
+  hunterLevel:0,
+  attacking: false
 }
 
 export const changeItem = (resp: any) => {

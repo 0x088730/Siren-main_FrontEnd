@@ -142,7 +142,7 @@ const UpgradeWallModal = ({
                     marginBottom: '0px'
                   }}
                 >
-                  {userModule.user.wall === 1 ? 'UPGRADE LVL 2: 500 SIREN' : userModule.user.wall === 2 ? 'UPGRADE LVL 2: 1500 SIREN' : 'UPGRADE FINISHED'}
+                  {userModule.user.wall === 1 ? 'UPGRADE LVL 2: 500 SIREN' : userModule.user.wall === 2 ? 'UPGRADE LVL 3: 1500 SIREN' : 'UPGRADE FINISHED'}
                 </h2>
                 {(userModule.user.wall !== 3) && (
                   <Button

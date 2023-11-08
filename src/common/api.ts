@@ -9,8 +9,6 @@ export const getProfile = async (walletAddress: string, character: string) => {
         character
     })).data
     const user = data.user
-    //console.log(user)
-    console.log(user)
     let currentCharacter = user.characters.filter((character : any)=>character.characterName===user.currentCharacterName)[0]
     global.hp = currentCharacter.hp
     global.damage = currentCharacter.damage
@@ -92,7 +90,6 @@ export const energySwap = async (walletAddress: string, character: string = 'sir
     })).data;
 
     // const user = data.user
-    //console.log(data)
     let currentCharacter = data.characters.filter((character : any)=>character.characterName===data.currentCharacterName)[0]
     
     cb({

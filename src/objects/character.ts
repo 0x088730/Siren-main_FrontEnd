@@ -78,7 +78,7 @@ export default class Character extends Phaser.Events.EventEmitter {
           this.movingTween.play()
         }
         else {
-          this.onDead()
+          // this.onDead()
           store.dispatch(setGameTurn())
         }
       }
@@ -103,7 +103,7 @@ export default class Character extends Phaser.Events.EventEmitter {
     // throwAnim.duration = 1.25
 
     // this.characterFire.setAlpha(0)
-    this.on('dead', this.onDead, this)
+    // this.on('dead', this.onDead, this)
   }
 
   getDamaged(damage: number = 150) {

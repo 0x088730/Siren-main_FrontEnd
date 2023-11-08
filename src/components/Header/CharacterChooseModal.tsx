@@ -97,7 +97,7 @@ const CharacterChooseModal = ({open,setOpen,
                 let available = 
                 global.characters.filter(character=>character.characterNo===characterNo-1).length>0&&
                 !selectedCharacterList.includes(characterNo)
-                return <Grid item xs={5} sx={{ padding: '0 !important', position:'relative', height:"150%",marginLeft:"auto",marginRight:"auto"}}>
+                return <Grid key={characterNo} item xs={5} sx={{ padding: '0 !important', position:'relative', height:"150%",marginLeft:"auto",marginRight:"auto"}}>
                   <img src={`/assets/character/avatars/${characterNo}${available===false?"-1":""}.png`} alt="" 
                   style={{position:'absolute',top:0,marginLeft:"10px",marginRight:"auto",zIndex:"20", height:"100%",  }}
                   onClick={()=>{if(available===true) {setSelectedCharacter(characterNo); handleClose() } }}/>

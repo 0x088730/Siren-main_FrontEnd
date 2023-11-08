@@ -29,6 +29,7 @@ import UpgradeWallModal from '../../components/Header/UpgradeWallModal'
 import { global } from '../../common/global'
 import RockModal from '../../components/Header/RockModal'
 import { NONE } from 'phaser'
+import { transform } from 'typescript'
 
 interface MainProps {
   showAccount: any
@@ -42,9 +43,10 @@ const Main = ({ showAccount, setShowAccount }: MainProps) => {
 
   const [Siren, setSiren] = useState(userModule.user.Siren)
   const [eggs, setEggs] = useState(userModule.user.eggs)
+  const [resource, setResource] = useState(userModule.user.resource)
   const [wallLevelState, setWallLevelState] = useState(userModule.user.wall)
 
-  const resource = userModule.user.resource
+  // const resource = userModule.user.resource
 
   const [openInstruction, setOpenInstruction] = useState(false)
   const [windowSize, setWindowSize] = useState({
@@ -126,11 +128,11 @@ const Main = ({ showAccount, setShowAccount }: MainProps) => {
     dispatch(
       stakeDiamond(address, selectedIndex, item, (res: any) => {
         if (res.success === false) return
-
         const _items = [...items]
         _items[selectedIndex].item = item
         _items[selectedIndex].timer = STAKE_TIMER
         setItems(_items)
+        setSiren(res.data)
         handleClose()
       }),
     )
@@ -152,10 +154,11 @@ const Main = ({ showAccount, setShowAccount }: MainProps) => {
   const onClaim = (index: number) => {
     dispatch(
       claimDiamond(address, index, (res: any) => {
-        if (res.success === false) return
+        if (res.success === false) return setResource(resource)
         const _items = [...items]
         _items[index].item = 0
         _items[index].timer = 0
+        if(typeof res.data.resource === 'number') setResource(res.data.resource)
         setItems(_items)
       }),
     )
@@ -317,6 +320,7 @@ const Main = ({ showAccount, setShowAccount }: MainProps) => {
           setShowAccount={setShowAccount}
           Siren={Siren}
           eggs={eggs}
+          resource={resource}
         />
 
         <Modal
@@ -603,14 +607,16 @@ const Main = ({ showAccount, setShowAccount }: MainProps) => {
                 width: '100%',
                 height: '100%',
                 position: 'absolute',
+                cursor: 'pointer'
               }}
               onClick={() => setOpenUpgradeWall(true)}
+              className={styles.item}
             />
             <Box
               sx={{
-                width: '65%',
+                width: '50%',
                 paddingTop: '50vh',
-                transform: 'translateY(-20vh)',                
+                // transform: 'translateY(-20vh)',                
 
                 justifyContent: 'space-between',
                 margin: 'auto',
@@ -621,30 +627,33 @@ const Main = ({ showAccount, setShowAccount }: MainProps) => {
               <Box
                 sx={{
                   cursor: 'pointer',
-                  transform: 'translateY(-30px)',
+                  transform: 'translateY(-100px)',
+                  height: 'fit-content',
 
                   zIndex: 20,
                 }}
                 onClick={(e) => setOpenSwap(true)}
               >
-                <img alt="" src="/images/storage.png" />
+                <img alt="" src="/images/storage.png" style={{transform: 'translate(-50%, -50%)'}} className={styles.item}/>
               </Box>
               <Box
                 sx={{
                   cursor: 'pointer',
-                  transform: 'translateY(80px)',
-
+                  transform: 'translate(20px, 20px)',
+                  height: 'fit-content',
                   zIndex: 20,
                 }}
                 onClick={(e) => setOpenDeposit(true)}
               >
-                <img alt="" src="/images/home.png" />
+                <img alt="" src="/images/home.png" style={{transform: 'translate(-50%, -50%)', maxWidth: '250px'}} className={styles.item}/>
               </Box>
               <Box
                 sx={{
                   // left: `${Math.max(innerWidth, 1200) / 2 - 75}px`,
                   zIndex: 20,
                   transform: 'translateY(200px)',
+                  height: 'fit-content',
+                  width: 'fit-content',
 
                   cursor: 'pointer',
                 }}
@@ -655,19 +664,21 @@ const Main = ({ showAccount, setShowAccount }: MainProps) => {
                 <img
                   alt=""
                   className={styles.item}
-                  width={'70%'}
+                  style={{transform: 'translate(0, -100%)'}}
+                  width={'80%'}
                   src={`/images/bird_place.png`}
                 />
               </Box>
               <Box
                 sx={{
-                  zIndex: 20,
-                  transform: 'translateY(-100px)',
+                  zIndex: 20,                  
+                  transform: 'translate(100%, -180px)',
+                  height: 'fit-content',
                   cursor: 'pointer',
                 }}
                 onClick={(e) => setOpenMining(true)}
               >
-                <img alt="" src="/images/mining.png" />
+                <img alt="" src="/images/mining.png"  style={{transform: 'translate(-50%, -50%)'}} className={styles.item}/>
               </Box>
             </Box>
             <Box
@@ -707,7 +718,8 @@ const Main = ({ showAccount, setShowAccount }: MainProps) => {
                     <img
                       alt=""
                       className={styles.item}
-                      width={index===1?150:100}
+                      width={'100'}
+                      // width={index===1?150:100}
                       src={`/images/place_${item.type}.png`}
                     />
                   </Box>

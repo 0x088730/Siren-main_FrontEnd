@@ -11,8 +11,10 @@ export function showHours(seconds) {
 }
 
 export function showHourMinutes(seconds) {
-  const min = Math.ceil(seconds / 60)
-  const h = Math.floor(min / 60)
-  const m = Math.floor(min % 60)
-  return h + ':' + m
+  // const min = Math.ceil(seconds / 60)
+  // const h = Math.floor(min / 60)
+  // const m = Math.floor(min % 60)
+  // return h + ':' + m
+ 
+  return 0 + ':' + seconds
 }

@@ -138,7 +138,7 @@ export const GamePage = ({
                     </div>
                     <div className="btn-wrapper">
                       <ButtonComponent onClick={inventory}>
-                        <img src="assets/images/inventory.png"/>
+                        <img src="assets/images/inventory.png" style={{width: '573px', height: '176px'}}/>
                       </ButtonComponent>
                     </div>
                   </div>

@@ -23,7 +23,7 @@ export default class RoomItemWidget extends Phaser.GameObjects.Container {
     this.add(
       (this.background = scene.add
         .image(0, 0, 'room-btn')),
-    )    
+    )
     this.add(
       (scene.add
         .text(0, 0, `${id}`, { font: '75px Arial', color: this.form === 1 ? '#efb21f' : 'white' })

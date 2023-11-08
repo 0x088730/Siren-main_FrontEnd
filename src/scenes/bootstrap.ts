@@ -81,10 +81,12 @@ export default class Bootstrap extends Phaser.Scene {
     // )
 
     this.load.image('battle-background', 'assets/background/bg.jpg')
-    this.load.image('robot', 'assets/character/robot-1.png')
+    this.load.image('robot', 'assets/character/robot.png')
     this.load.image('siren', 'assets/character/siren.png')
+    this.load.image('heart-mark', 'assets/images/heart-mark.png')
     this.load.image('heart-mark-siren', 'assets/images/heart-mark-siren.png')
     this.load.image('heart-mark-enemy', 'assets/images/heart-mark-enemy.png')
+    this.load.image('heart-mark-enemy1', 'assets/images/heart-mark-enemy1.png')
     this.load.image('embed-bar', 'assets/images/embed-bar.png')
     this.load.image('enemy-avatar', 'assets/images/robot_avatar.png')
     this.load.image('siren-avatar', 'assets/images/laffey_avatar.png')
@@ -139,6 +141,7 @@ export default class Bootstrap extends Phaser.Scene {
     this.load.image('swap-btn', 'assets/images/swap_btn.png')
     this.load.image('criti-bar', 'assets/images/criti-bar.png')
     this.load.image('normal-damage', 'assets/images/normal-damage.png')
+    this.load.image('red-neon-arrow', 'assets/images/red-neon-arrow-3.png')
   }
 
   loadClaimWidget() {

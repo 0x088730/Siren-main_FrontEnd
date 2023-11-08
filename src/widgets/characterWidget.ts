@@ -64,17 +64,17 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     this.scene = scene
     this.add(
       (this.background = scene.add
-        .image(270, 0, 'character1-frame')
+        .image(70, 0, 'character1-frame')
         .setDisplaySize(700, 700)),
     )
     this.add(
       (this.modelBackground = scene.add
-        .image(-480, 0, 'character-model-bg')
+        .image(-280, 0, 'character-model-bg')
         .setDisplaySize(800, 700)),
     )
     this.add(
       (this.addGem = scene.add
-        .image(-240, -65, 'add-gem')
+        .image(-40, -65, 'add-gem')
         .setDisplaySize(192, 69))
         .setInteractive()
         .on('pointerdown', () => {
@@ -83,7 +83,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     )
     this.add(
       (this.addEnergy = scene.add
-        .image(-770, -300, 'add-energy')
+        .image(-570, -300, 'add-energy')
         .setDisplaySize(138, 47))
         .setInteractive()
         .on('pointerdown', () => {
@@ -92,7 +92,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     )
     this.add(
       (this.addWeapon = scene.add
-        .image(-240, 105, 'add-weapon')
+        .image(-40, 105, 'add-weapon')
         .setDisplaySize(192, 69))
         .setInteractive()
         .on('pointerdown', () => {
@@ -100,31 +100,32 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
         }),
     )
     this.add(
-      (this.health = this.scene.add.text(-232, -173, `${1000}`, {
+      (this.health = this.scene.add.text(-32, -173, `${1000}`, {
         font: '17px Anime Ace',
         color: '#ffffff',
       })),
     )
     this.add(
-      (this.critical = this.scene.add.text(-232, -266, `10%`, {
+      (this.critical = this.scene.add.text(-32, -266, `10%`, {
         font: '17px Anime Ace',
         color: '#ffffff',
       })),
     )
+    if(global.energy < 0) global.energy = 0
     this.add(
-      (this.energy = this.scene.add.text(-785, -307, `${global.energy}`, {
+      (this.energy = this.scene.add.text(-600, -307, `${global.energy}`, {
         font: '17px Anime Ace',
         color: '#ffffff',
       })),
     )
     this.add(
       (this.levelLabel = this.scene.add
-        .text(-578, -250, `${1}`, { font: '90px Anime Ace', color: '#e62b2b' })
+        .text(-378, -250, `${1}`, { font: '90px Anime Ace', color: 'white' })
         .setOrigin(0.5, 0.5)),
     )
     this.add(
       (this.expLabel = this.scene.add
-        .text(-570, -159, `40/100`, {
+        .text(-370, -159, `40/100`, {
           font: '20px Anime Ace',
           color: '#ffffff',
         })
@@ -134,7 +135,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     this.modelBackground.setVisible(false)
     this.add(
       (this.closeBtn = scene.add
-        .image(605, -335, 'close-btn')
+        .image(405, -335, 'close-btn')
         .setInteractive()
         .setScale(0.5)
         .on('pointerdown', () => {
@@ -188,7 +189,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
 
       this.add(
         (this.weapon[i] = scene.add
-          .image(row * 200 + 60, col * 200 - 200, `weapon-${weaponList[i]}`)
+          .image(row * 200 + 260, col * 200 - 200, `weapon-${weaponList[i]}`)
           .setDisplaySize(200, 200)
           .setInteractive()
           .on('pointerdown', () => {})),
@@ -207,7 +208,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     }
 
     this.add(
-      (this.energySwapEdit = this.scene.add.dom(295, -50, 'input', {
+      (this.energySwapEdit = this.scene.add.dom(465, -50, 'input', {
         type: 'number',
         value: '0',
         pattern: '[0-9]*',
@@ -230,7 +231,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
 
     this.add(
       (this.waterText = this.scene.add
-        .text(150, -140, `${'YOU HAVE:'}`, {
+        .text(330, -140, `${'YOU HAVE:'}`, {
           font: '30px Anime Ace',
           color: '#fff',
           stroke: '#000',
@@ -240,7 +241,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     )
     this.add(
       (this.waterText1 = this.scene.add
-        .text(320, -140, `${global.resource}`, {
+        .text(500, -140, `${global.resource}`, {
           font: '30px Anime Ace',
           color: '#00c7df',
           stroke: '#000',
@@ -250,7 +251,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     )
     this.add(
       (this.waterText2 = this.scene.add
-        .text(450, -140, `${'WATER'}`, {
+        .text(640, -140, `${'WATER'}`, {
           font: '30px Anime Ace',
           color: '#fff',
           stroke: '#000',
@@ -261,7 +262,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
 
     this.add(
       (this.energySwapText = this.scene.add
-        .text(260, 120, `${'WATER IS DRAWN FROM WELLS ON YOUR'}`, {
+        .text(440, 120, `${'WATER IS DRAWN FROM WELLS ON YOUR'}`, {
           font: '18px Anime Ace',
           color: '#fff',
           stroke: '#000',
@@ -272,7 +273,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
 
     this.add(
       (this.energySwapText1 = this.scene.add
-        .text(520, 120, `${'LAND'}`, {
+        .text(700, 120, `${'LAND'}`, {
           font: '18px Anime Ace',
           color: '#9292f8',
           stroke: '#000',
@@ -283,7 +284,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
 
     this.add(
       (this.swapBtn = scene.add
-        .image(300, 25, 'swap-btn')
+        .image(470, 25, 'swap-btn')
         .setDisplaySize(118, 46))
         .setInteractive()
         .on('pointerdown', () => {
@@ -315,11 +316,11 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     this.setVisible(false)
     scene.add.existing(this)
     this.sirenSpine = this.scene.add
-      .spine(280, 765, SIREN_SPINE, 'Idle', true)
+      .spine(500, 780, SIREN_SPINE, 'idle', true)
       .setScale(0.25)
     this.sirenSpine.setVisible(false)
     this.siren3 = this.scene.add
-      .sprite(486, 500, 'siren-3')
+      .sprite(686, 500, 'siren-3')
       .setScale(0.7, 0.7)
       .setPosition(300, 550)
     this.siren3.setVisible(false)
@@ -361,7 +362,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
             : ''
 
         const lvtext: any = this.scene.add.text(
-          row * 300 + 80,
+          row * 300 - 120,
           col * 300 - 60,
           level,
           { fontSize: '20px', fontFamily: 'Anime Ace', color: 'white' },
@@ -388,7 +389,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
         // this.add(raritytext);
 
         const raritytext = this.scene.add.text(
-          row * 300 + 20,
+          row * 300 - 180,
           col * 305 - 240,
           rarity,
           {
@@ -416,7 +417,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
         
         
         this.model[i]
-          .setPosition(row * 300 + 110, col * 300 - 160)
+          .setPosition(row * 300 - 90, col * 300 - 160)
 
           .setTexture(modelName)
           .removeListener('pointerdown')
@@ -553,7 +554,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
       if (count > 0) {
         type = type.replace('_', '-')
         let newItem = this.scene.add
-          .image(-289 + 59 * i, 13, `item-${type}`)
+          .image(-89 + 59 * i, 13, `item-${type}`)
           .setDisplaySize(40, 40)
           .setInteractive()
           .on('pointerdown', () => {
@@ -597,7 +598,7 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
       const row = Math.floor(j % 4)
       const col = Math.floor(j / 4)
       const cell = this.gem.getAt(j)
-      cell.move(row * 160 + 20, col * 160 - 240)
+      cell.move(row * 160 + 220, col * 160 - 240)
     }
   }
   setModelList(visible: boolean) {
@@ -642,8 +643,10 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
         this.setGemList(false)
         this.setEmbedList(false)
         this.closeBtn.setVisible(true)
+        this.closeBtn.x = 405
         this.modelBackground.setVisible(false)
         this.background.setVisible(true)
+        this.background.x = 70
         this.sirenSpine.setVisible(false)
         this.siren3.setVisible(false)
         this.addWeapon.setVisible(false)
@@ -674,7 +677,9 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
         this.setEmbedList(true)
         this.modelBackground.setVisible(true)
         this.background.setVisible(true)
+        this.background.x = 470
         this.closeBtn.setVisible(true)
+        this.closeBtn.x = 805
         // this.background.setVisible(false)
         this.siren3.setVisible(false)
         if (global.currentCharacterName === 'siren-1') {
@@ -753,7 +758,6 @@ export default class CharacterWidget extends Phaser.GameObjects.Container {
     }
   }
   updateHpCritical(hp: number, critical: number, damage: number, embed: Array<any>) {
-    console.log(embed)
     embed.map((item) => {
       let type = item.item
       if (type === 'infernal_1') {

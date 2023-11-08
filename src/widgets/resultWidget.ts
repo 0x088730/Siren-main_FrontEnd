@@ -11,7 +11,7 @@ export default class ResultWidget extends Phaser.GameObjects.Container {
     super(scene, x, y)
     this.scene = scene    
     this.add(
-      (this.background = scene.add.image(0, 0, 'result-bg')),
+      (this.background = scene.add.image(0, 0, 'result-bg'))
       // .setDisplaySize(800, 600)
     )
     // const shader = scene.add.shader('outer-glow-shader', 0, 0, 800, 600);

@@ -30,6 +30,9 @@ export default class ClaimWidget extends Phaser.GameObjects.Container {
   tweenSpark5!: Phaser.Tweens.Tween
   tweenSpark6!: Phaser.Tweens.Tween
 
+  claimBtn: Phaser.GameObjects.Image
+  claimLabel!: Phaser.GameObjects.Text
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y)
     this.scene = scene
@@ -51,27 +54,47 @@ export default class ClaimWidget extends Phaser.GameObjects.Container {
       .setScale(0.5, 0.5)
       .setOrigin(0.5, 0.5)
       .setVisible(false)
+     
+    this.claimBtn = this.scene.add
+      .image(960, 780, 'big-btn')
+      .setInteractive()
+      .setScale(0.35)
+      .setVisible(false)
+      .on('pointerover', () => {
+        this.add(this.selectedItem)
+        this.setVisible(false)
+        this.claimBtn.setVisible(false)
+        this.claimLabel.setVisible(false)
+        this.hpPlus.setText(`HP + ${this.selectedItem.crystals * 50}`)
+        this.hpPlus.setVisible(true)
+        this.hpTween.play()
+      })
+
+    this.claimLabel = this.scene.add
+      .text(960, 780, `CLAIM`, { font: '25px Anime Ace', color: 'white', stroke: 'white'})
+      .setScale(0.8, 0.8)
+      .setOrigin(0.5, 0.5)
+      .setVisible(false)
 
     this.selectedItem = new GameItem(scene, 0, 0, 'gem', 1)
       .setVisible(false)
       .setInteractive()
       .on('pointerdown', () => {
-        
 
         // when I click the gem on inventory.
-        if(this.selectedItem.itemType === 'chimera') {
+        // if(this.selectedItem.itemType === 'chimera') {
           
           this.hpPlus.setText(`HP + ${this.selectedItem.crystals * 50}`)
           this.hpPlus.setVisible(true)
           this.hpTween.play()
-        }
-        else {
+        // }
+        // else {
           this.emit(
             'randomly-selected',
             this.selectedItem.itemType,
             this.selectedItem.crystals,
           )
-        }
+        // }
       })
     this.add(this.selectedItem)
 
@@ -116,6 +139,8 @@ export default class ClaimWidget extends Phaser.GameObjects.Container {
           const item = this.items.getAt(19)
           this.selectedItem.setType(item.itemType, item.crystals)
           this.selectedItem.setVisible(true)
+          this.claimBtn.setVisible(true)
+          this.claimLabel.setVisible(true)
         })
       },
       // 3 seconds
@@ -125,7 +150,7 @@ export default class ClaimWidget extends Phaser.GameObjects.Container {
 
       x: '+=2000',
     })
-
+    
     this.boxTween = scene.tweens
       .add({
         duration: 500,

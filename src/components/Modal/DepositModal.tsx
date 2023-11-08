@@ -1,5 +1,5 @@
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { Grid, TextField, Stack /* , Tooltip */ } from '@mui/material'
+import { Grid, TextField, Stack, InputLabel, FormControl /* , Tooltip */ } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
@@ -49,12 +49,12 @@ const DepositModal = ({
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  const [bcsAmount, setBCSAmount] = useState(0)
+  const [bcsAmount, setBCSAmount] = useState(320)
   const [SirenAmount, setSirenAmount] = useState(0)
   const [withdrawableBcsAmount, setWithdrawableBcsAmount] = useState<number>(0)
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       // console.log('user withdraws changed', user.withdraws.length)
       const withdrewSirenAmount = getWithdrewSirenAmount(user.withdraws) // Siren
       // const bcsPrice = await getBcsPrice();
@@ -81,7 +81,10 @@ const DepositModal = ({
   const onChangeAmount = (e: any) => {
     e.preventDefault()
 
-    if (e.target.value < 0) return
+    if (e.target.value < 0) {
+      setBCSAmount(320)
+      return
+    }
 
     setBCSAmount(e.target.value)
   }
@@ -109,7 +112,7 @@ const DepositModal = ({
 
   const onDeposit = async () => {
     if (bcsAmount < 5) {
-      // alert("minimal withdraw amount is 320BCS");
+      alert("minimal withdraw amount is 320BCS");
       return
     }
     dispatch(onShowAlert('Pease wait while confirming', 'info'))
@@ -138,7 +141,7 @@ const DepositModal = ({
 
   const onWithdraw = async () => {
     if (SirenAmount < 10) {
-      // alert("minimal withdraw amount is 300Siren");
+      alert("minimal withdraw amount is 300Siren");
       return
     }
 
@@ -147,8 +150,7 @@ const DepositModal = ({
     if (withdrawableBcsAmount * 10 <= SirenAmount) {
       dispatch(
         onShowAlert(
-          `you can withdraw only ${
-            checkPremium(user.premium) ? 10 : 5
+          `you can withdraw only ${checkPremium(user.premium) ? 10 : 5
           } per day`,
           'warning',
         ),
@@ -240,10 +242,11 @@ const DepositModal = ({
               </p>
               <p
                 style={{
-                  color: '#879906',
+                  color: '#770909',
                   marginTop: '12px',
                   textAlign: 'center',
                   marginBottom: '12px',
+                  fontWeight: 'bold'
                 }}
               >
                 <ErrorOutlineIcon /> You can withdraw BCS: 5 a day and 10
@@ -265,27 +268,41 @@ const DepositModal = ({
                 <Stack
                   spacing={2}
                   sx={{
+                    display: 'flex',
+                    alignItems:'center',
                     fontFamily: 'Marko One, serif',
                     fontSize: '18px',
                     textTransform: 'uppercase',
-                    textAlign: 'center',
                     color: '#e7e1e1',
                     lineHeight: '120%',
                   }}
                 >
-                  <TextField
-                    sx={{ mr: 1, textAlign: 'right', borderColor: 'red' }}
-                    name="bcs"
-                    label="BCS"
-                    value={bcsAmount}
-                    type="number"
-                    onChange={onChangeAmount}
-                  />
-                  <p>You will receive {Number(bcsAmount)} Siren</p>
-                  <Box display="flex" gap={`2px`} sx={{ color: '#879906' }}>
-                    <ErrorOutlineIcon />
-                    <Typography>Min deposit: 320px</Typography>
-                  </Box>
+                  <div style={{marginTop: '0px', textAlign:"left"}}>
+                    <div style={{fontFamily: 'Anime Ace', color: '#ffe86b', fontSize: '16px', margin: '2px 20px'}}>BCS</div>
+                    <TextField
+                      sx={{ mr: 1, textAlign: 'right', borderColor: 'white', width: '100%', borderRadius: '5px', backgroundColor: 'white'}}
+                      name="bcs"
+                      value={bcsAmount}
+                      size='small'
+                      onChange={onChangeAmount}
+                    />
+                  </div>
+                  <p style={{textAlign: 'center'}}>You will receive <br/> {Number(bcsAmount)} Siren</p>
+                  <p
+                    style={{
+                      color: '#770909',
+                      marginTop: '12px',
+                      textAlign: 'center',
+                      fontFamily: 'Anime Ace',
+                      fontSize: '15px',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    <ErrorOutlineIcon /> Min deposit: 320px
+                  </p>
+                  {/* <ErrorOutlineIcon />
+                    <Typography></Typography> */}
+                  {/* </Box> */}
                   <Box
                     sx={{
                       display: 'flex',
@@ -293,7 +310,7 @@ const DepositModal = ({
                     }}
                   >
                     <Button onClick={(/* e */) => onDeposit()}>
-                      <img alt="" src="/assets/images/big-button.png" />
+                      <img alt="" src="/assets/images/big-button.png" style={{width: '80%'}}/>
                       <p
                         style={{
                           position: 'absolute',
@@ -314,6 +331,8 @@ const DepositModal = ({
                 <Stack
                   spacing={2}
                   sx={{
+                    display: 'flex',
+                    alignItems:'center',
                     fontFamily: 'Marko One, serif',
                     fontSize: '18px',
                     textTransform: 'uppercase',
@@ -322,22 +341,36 @@ const DepositModal = ({
                     lineHeight: '120%',
                   }}
                 >
-                  <TextField
-                    sx={{ mr: 1, textAlign: 'right', borderColor: 'red' }}
-                    name="Siren"
-                    label="Siren"
-                    value={SirenAmount}
-                    type="number"
-                    onChange={onChangeEggAmount}
-                  />
-                  <p>You will receive {Math.floor(SirenAmount / 10)} BCS</p>
-                  <Box display="flex" gap="2px" sx={{ color: '#879906' }}>
-                    <ErrorOutlineIcon />
+                  <div style={{marginTop: '0px', textAlign:"left"}}>
+                    <div style={{fontFamily: 'Anime Ace', color: '#ffe86b', fontSize: '16px', margin: '2px 20px'}}>SIREN</div>
+                    <TextField
+                      sx={{ mr: 1, textAlign: 'right', borderColor: 'white', width: '100%', borderRadius: '5px', backgroundColor: 'white'}}
+                      name="Siren"
+                      value={SirenAmount}
+                      size='small'
+                      onChange={onChangeEggAmount}
+                    />
+                  </div>                  
+                  <p style={{textAlign: 'center'}}>You will receive <br/> {Math.floor(SirenAmount / 10)} BCS</p>
+                  <p
+                    style={{
+                      color: '#770909',
+                      marginTop: '12px',
+                      textAlign: 'center',
+                      fontFamily: 'Anime Ace',
+                      fontSize: '15px',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    <ErrorOutlineIcon /> Availabe : {Math.floor(withdrawableBcsAmount).toString()}{' '}
+                    BCS
+                  </p>
+                  {/* <ErrorOutlineIcon />
                     <Typography component="p">
                       Availabe : {Math.floor(withdrawableBcsAmount).toString()}{' '}
                       BCS
-                    </Typography>
-                  </Box>
+                    </Typography> */}
+                  {/* </Box> */}
                   <Box
                     sx={{
                       display: 'flex',
@@ -345,7 +378,7 @@ const DepositModal = ({
                     }}
                   >
                     <Button onClick={(/* e */) => onWithdraw()}>
-                      <img alt="" src="/assets/images/big-button.png" />
+                      <img alt="" src="/assets/images/big-button.png" style={{width: '80%'}}/>
                       <p
                         style={{
                           position: 'absolute',

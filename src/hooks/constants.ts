@@ -26,13 +26,15 @@ export const GOLD_MINE = {
   COST: chainId === 97 ? 1 : 5040,
   CLAIM: 300,
   REQUEST: 20,
-  TIMER: 3 * 60 * 60,
+  TIMER: 30,
+  // TIMER: 3 * 60 * 60,
 }
 export const URANIUM_MINE = {
   COST: chainId === 97 ? 1 : 6700,
   CLAIM: 400,
   REQUEST: 30,
-  TIMER: 3 * 60 * 60,
+  TIMER: 30,
+  // TIMER: 3 * 60 * 60,
 }
 
 export const POWER_PLANT = {
@@ -42,7 +44,8 @@ export const POWER_PLANT = {
   TIMER: 24 * 60 * 60,
 }
 
-export const STAKE_TIMER = 3 * 60 * 60
+// export const STAKE_TIMER = 3 * 60
+export const STAKE_TIMER = 30
 export const MINING_TIMER = 24 * 60 * 60
 
 export const RPC_URL = {

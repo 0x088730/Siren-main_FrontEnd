@@ -66,12 +66,13 @@ export function stakeDiamond(
         position: index,
         diamond: item,
       })
-      is_diamond_staking = false
+      
       cb(res)
       dispatch({
         type: RESOURCE_CHANGE_SUCCESS,
         payload: { data: res },
       })
+      is_diamond_staking = false
     } catch (e) {
       is_diamond_staking = false
     }
@@ -88,6 +89,7 @@ export function stakeBird(address: any, position: number, cb: any) {
         position,
       })
       is_bird_staking = false
+
       cb(res)
       dispatch({
         type: RESOURCE_CHANGE_SUCCESS,
@@ -105,6 +107,7 @@ export function swapResources(address: any, level: Number, cb: any) {
       walletAddress: address,
       level: level,
     })
+    console.log("change", res)
     cb(res)
     dispatch({
       type: RESOURCE_CHANGE_SUCCESS,
@@ -522,3 +525,4 @@ export async function getWithdrawAmount(address: string) {
 //     })
 //   }
 // }
+

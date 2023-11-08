@@ -9,7 +9,7 @@ import store from '../store'
 import ClaimWidget from '../widgets/claimWidget'
 import InventoryWidget from '../widgets/inventoryWidget'
 import CharacterWidget from '../widgets/characterWidget'
-import { SIREN_SPINE } from '../config/const'
+import { ENEMY_SPINE, SIREN_SPINE } from '../config/const'
 import { itemModify } from '../common/api'
 import { changeItem, global } from '../common/global'
 import RoomWidget from '../widgets/roomWidget'
@@ -33,7 +33,7 @@ export default class Game extends Phaser.Scene {
 
   preload() {
     this.load.setPath('assets/character/spine')
-    this.load.spine(SIREN_SPINE, 'siren/siren1.json', 'siren/siren1.atlas')
+    this.load.spine(SIREN_SPINE, 'siren1/idle/sakura.json', 'siren1/idle/sakura.atlas')
     this.load.setPath('/')
   }
 

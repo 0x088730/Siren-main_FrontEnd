@@ -86,13 +86,13 @@ export default class RoomWidget extends Phaser.GameObjects.Container {
     )
     this.add(
       (this.background = scene.add
-        .image(270, 0, 'character1-frame')
+        .image(70, 0, 'character1-frame')
         .setDisplaySize(700, 700)).setVisible(false),
     )
 
     this.add(
       (this.closeBtn = scene.add
-        .image(605, -335, 'close-btn')
+        .image(405, -335, 'close-btn')
         .setInteractive()
         .setScale(0.5)
         .on('pointerdown', () => {
@@ -146,7 +146,7 @@ export default class RoomWidget extends Phaser.GameObjects.Container {
             ).toString()
           : ''
       const lvtext: any = this.scene.add
-        .text(row * 300 + 80, col * 300 - 60, level, {
+        .text(row * 300 - 120, col * 300 - 60, level, {
           fontSize: '20px',
           fontFamily: 'Anime Ace',
           color: 'white',
@@ -154,7 +154,7 @@ export default class RoomWidget extends Phaser.GameObjects.Container {
         .setVisible(false)
       this.lvTexts.push(lvtext)
       const raritytext = this.scene.add.text(
-        row * 300 + 20,
+        row * 300 - 180,
         col * 305 - 240,
         rarity,
         {
@@ -178,7 +178,7 @@ export default class RoomWidget extends Phaser.GameObjects.Container {
       this.rarityTexts.push(raritytext)
       this.add(
         (this.model[i] = scene.add
-          .image(row * 300 + 110, col * 300 - 160, modelName) //
+          .image(row * 300 - 90, col * 300 - 160, modelName) //
           .setDisplaySize(220, 220)
           .setInteractive())
           .on('pointerdown', () => {
@@ -199,23 +199,6 @@ export default class RoomWidget extends Phaser.GameObjects.Container {
                 alert("you have to buy")
                 characterClickFlag=false
               }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             }
             
